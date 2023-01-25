@@ -6,9 +6,10 @@ interface Props {
 
 const GetWordInfo: React.FC<Props> = () => {
   const [dictData, setDictData] = useState<any>("");
+  const [word, setWord] = useState<string>("")
 
   const handleApiCall = () => {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hllo")
+    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hello")
       .then((response) => {
         return response.json();
       })
@@ -20,24 +21,16 @@ const GetWordInfo: React.FC<Props> = () => {
         console.log(reject);
         
       });
-
-    if (dictData) {
-        setDictData(dictData["word"]);
-    } else {
-        setDictData("Word doesn't exist");
-    }
   };
 
-//   useEffect(() => {
-//     if (typeof dictData === undefined) {
-//       setDictData("Word doesn't exist");
-//     } 
-//   }, [dictData]);
+  useEffect(() => {
+    setWord(dictData['word']) 
+  }, [dictData]);
 
   return (
     <>
       <button onClick={handleApiCall}>Click for test</button>
-      <h1>{dictData}</h1>
+      <h1>{word}</h1>
     </>
   );
 };
