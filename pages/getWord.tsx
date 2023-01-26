@@ -1,15 +1,22 @@
-import { useEffect, useState } from "react";
+import { ReactPropTypes, useEffect, useState } from "react";
 
 interface Props {
   userWord: string;
+  dictData: any;
+  setDictData: Function;
+  word: string;
+  setWord: Function;
 }
 
-const GetWordInfo: React.FC<Props> = () => {
-  const [dictData, setDictData] = useState<any>("");
-  const [word, setWord] = useState<string>("")
-
+const GetWordInfo: React.FC<Props> = ({
+  userWord,
+  dictData,
+  setDictData,
+  word,
+  setWord,
+}) => {
   const handleApiCall = () => {
-    fetch("https://api.dictionaryapi.dev/api/v2/entries/en/hello")
+    fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`)
       .then((response) => {
         return response.json();
       })
@@ -19,17 +26,18 @@ const GetWordInfo: React.FC<Props> = () => {
       })
       .catch((reject) => {
         console.log(reject);
-        
       });
   };
 
   useEffect(() => {
-    setWord(dictData['word']) 
-  }, [dictData]);
+    if (dictData) {
+      setWord(dictData["word"]);
+    }
+  }, [dictData, setWord]);
 
   return (
     <>
-      <button onClick={handleApiCall}>Click for test</button>
+      <button className="" onClick={handleApiCall}>Click for test</button>
       <h1>{word}</h1>
     </>
   );
