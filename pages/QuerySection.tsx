@@ -46,7 +46,7 @@ const QuerySection: React.FC<Props> = ({
   return (
     <>
       <section className="bg-zinc-100">
-        <div className="flex items-center my-5" id="Page-Options">
+        <div className="flex flex-row justify-between items-center my-5" id="Page-Options">
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -102,13 +102,23 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
               />
             </g>
           </svg>
-          <label id="Font-Selection">
-            <select className="w-32 h-10 text-xl">
-              <option value="Sans Serif">Sans Serif</option>
-              <option value="Serif">Serif</option>
-              <option value="Mono">Mono</option>
-            </select>
-          </label>
+          <div className="flex divide-x-2">
+            <div className="mr-3">
+              <label id="Font-Selection">
+                <select className="w-32 h-10 bg-zinc-200 text-xl bg-white">
+                  <option value="Sans Serif">Sans Serif</option>
+                  <option value="Serif">Serif</option>
+                  <option value="Mono">Mono</option>
+                </select>
+              </label>
+            </div>
+            <div className="ml-3">
+              <label className="switch">
+                <input type="checkbox" />
+                <span className="slider round"></span>
+              </label>
+            </div>
+          </div>
         </div>
         <div className="flex my-10 rounded-2xl bg-zinc-200 p-5" id="Searchbox">
           <input
