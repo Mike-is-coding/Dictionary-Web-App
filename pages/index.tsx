@@ -1,18 +1,13 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import GetWordInfo from "./getWord";
-import Content from "./Content"
-
+import QuerySection from "./QuerySection";
+import Content from "./Content";
 
 export default function Home() {
-  const [userWord, setUserWord] = useState<string>("No Definitions Found");
+  const [userWord, setUserWord] = useState<string>("hllo");
   // const [inputValue, setInputValue] = useState<string>("");
   const [dictData, setDictData] = useState<any>("");
-  const [word, setWord] = useState<string>("")
-
-  useEffect(() => {
-    console.log(userWord);
-  }, [userWord])
+  const [word, setWord] = useState<string>("");
 
   return (
     <>
@@ -22,17 +17,15 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="public/favicon-32x32.png" /> */}
       </Head>
-      <main className="flex w-10/12 mx-auto justify-center flex-col bg-gray-500">
-        <input
-          className="w-screen text-lg rounded-md"
-          id="word-entry"
-          onChange={(e) => {
-            setUserWord(e.target.value);
-          }}
-          // value={inputValue}
+      <main className="flex bg-red-600 w-11/12 h-fit mx-auto justify-center flex-col bg-gray-500">
+        <QuerySection
+          userWord={userWord}
+          setUserWord={setUserWord}
+          dictData={dictData}
+          setDictData={setDictData}
+          word={word}
+          setWord={setWord}
         />
-        <GetWordInfo userWord={userWord} dictData={dictData} setDictData={setDictData}
-        word={word} setWord={setWord} />
         <Content />
       </main>
     </>

@@ -1,4 +1,4 @@
-import GetWordInfo from "./getWord";
+import GetWordInfo from "./QuerySection";
 
 export default function Content() {
     return (
