@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import search from "public/icon-search.svg";
-import book from "public/book.svg";
 
 interface Props {
+  font: string;
+  setFont: Function;
   userWord: string;
   setUserWord: Function;
   dictData: any;
@@ -12,6 +12,8 @@ interface Props {
 }
 
 const QuerySection: React.FC<Props> = ({
+  font,
+  setFont,
   userWord,
   setUserWord,
   dictData,
@@ -19,6 +21,8 @@ const QuerySection: React.FC<Props> = ({
   word,
   setWord,
 }) => {
+
+  //Handle the dictionary api call
   function handleApiCall() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`)
       .then((res) => {
@@ -39,6 +43,7 @@ const QuerySection: React.FC<Props> = ({
       });
   }
 
+  //Test input box
   useEffect(() => {
     console.log(userWord);
   }, [userWord]);
@@ -46,7 +51,10 @@ const QuerySection: React.FC<Props> = ({
   return (
     <>
       <section className="bg-zinc-100">
-        <div className="flex flex-row justify-between items-center my-5" id="Page-Options">
+        <div
+          className="flex flex-row justify-between items-center my-5"
+          id="Page-Options"
+        >
           <svg
             version="1.0"
             xmlns="http://www.w3.org/2000/svg"
@@ -105,22 +113,31 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
           <div className="flex divide-x-2">
             <div className="mr-3">
               <label id="Font-Selection">
-                <select className="w-32 h-10 bg-zinc-200 text-xl bg-white">
-                  <option value="Sans Serif">Sans Serif</option>
-                  <option value="Serif">Serif</option>
-                  <option value="Mono">Mono</option>
+                <select className="w-32 h-10 text-l font-bold border-none bg-white dark:bg-black">
+                  <option className="font-sans" value="Sans Serif">Sans Serif</option>
+                  <option className="font-serif" value="Serif">Serif</option>
+                  <option className="font-mono" value="Mono">Mono</option>
                 </select>
               </label>
             </div>
-            <div className="ml-3">
-              <label className="switch">
-                <input type="checkbox" />
-                <span className="slider round"></span>
+            {/* Toggle Switch */}
+            <div className="flex items-center">
+              <label
+                htmlFor="toggle-example"
+                className="flex items-center cursor-pointer relative mb-4"
+              >
+                <input
+                  type="checkbox"
+                  id="toggle-example"
+                  className="sr-only"
+                />
+                <div className="toggle-bg bg-zinc-500 border-none h-6 w-11 rounded-full"></div>
+                <span className="ml-3 text-gray-900 text-sm font-medium"></span>
               </label>
             </div>
           </div>
         </div>
-        <div className="flex my-10 rounded-2xl bg-zinc-200 p-5" id="Searchbox">
+        <div className="flex my-10 rounded-2xl bg-gray-200 p-5" id="Searchbox">
           <input
             className="w-full text-lg bg-zinc-200 mr-2 border-none"
             name="Word Textbox"

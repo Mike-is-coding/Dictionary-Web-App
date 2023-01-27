@@ -4,10 +4,15 @@ import QuerySection from "./QuerySection";
 import Content from "./Content";
 
 export default function Home() {
+  const [font, setFont] = useState<string>("font-sans")
   const [userWord, setUserWord] = useState<string>("hllo");
-  // const [inputValue, setInputValue] = useState<string>("");
   const [dictData, setDictData] = useState<any>("");
   const [word, setWord] = useState<string>("");
+
+  //Handle page font
+  useEffect(() => {
+    document.body.style.fontFamily = font;
+  }, [font])
 
   return (
     <>
@@ -19,6 +24,8 @@ export default function Home() {
       </Head>
       <main className="flex bg-red-600 w-11/12 h-fit mx-auto justify-center flex-col bg-gray-500">
         <QuerySection
+          font={font}
+          setFont={setFont}
           userWord={userWord}
           setUserWord={setUserWord}
           dictData={dictData}
