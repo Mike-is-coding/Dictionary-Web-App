@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import useLocalStorage from "use-local-storage";
+import Dropdown from "./DropdownMenu";
 
 interface Props {
   font: string;
@@ -21,7 +23,6 @@ const QuerySection: React.FC<Props> = ({
   word,
   setWord,
 }) => {
-
   //Handle the dictionary api call
   function handleApiCall() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`)
@@ -52,7 +53,7 @@ const QuerySection: React.FC<Props> = ({
     <>
       <section className="bg-zinc-100">
         <div
-          className="flex flex-row justify-between items-center my-5"
+          className="flex flex-row justify-between items-center my-5 dark:bg-gray-400"
           id="Page-Options"
         >
           <svg
@@ -111,24 +112,17 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             </g>
           </svg>
           <div className="flex divide-x-2">
-            <div className="mr-3">
-              <label id="Font-Selection">
-                <select className="w-32 h-10 text-l font-bold border-none bg-white dark:bg-black">
-                  <option className="font-sans" value="Sans Serif">Sans Serif</option>
-                  <option className="font-serif" value="Serif">Serif</option>
-                  <option className="font-mono" value="Mono">Mono</option>
-                </select>
-              </label>
-            </div>
+            {/* Font select dropdown */}
+            <Dropdown font={font} setFont={setFont} />
             {/* Toggle Switch */}
             <div className="flex items-center">
               <label
-                htmlFor="toggle-example"
-                className="flex items-center cursor-pointer relative mb-4"
+                htmlFor="Theme-toggle-switch"
+                className="flex items-center cursor-pointer relative ml-4"
               >
                 <input
                   type="checkbox"
-                  id="toggle-example"
+                  id="Theme-toggle-switch"
                   className="sr-only"
                 />
                 <div className="toggle-bg bg-zinc-500 border-none h-6 w-11 rounded-full"></div>
@@ -137,16 +131,21 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             </div>
           </div>
         </div>
-        <div className="flex my-10 rounded-2xl bg-gray-200 p-5" id="Searchbox">
+        {/* Query Box */}
+        <div className="flex my-10 rounded-2xl bg-gray-200 p-3" id="Searchbox">
           <input
-            className="w-full text-lg bg-zinc-200 mr-2 border-none"
+            className="w-full focus:ring-transparent text-2xl bg-gray-200 mr-2 border-none"
+            type="text"
             name="Word Textbox"
             id="word-entry"
             onChange={(e) => {
               setUserWord(e.target.value);
             }}
           />
-          <button className="" onClick={handleApiCall}>
+          <button
+            className="flex justify-center items-center w-10"
+            onClick={handleApiCall}
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="18"
