@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useLocalStorage from "use-local-storage";
 import Dropdown from "./DropdownMenu";
 
 interface Props {
@@ -9,8 +8,6 @@ interface Props {
   setUserWord: Function;
   dictData: any;
   setDictData: Function;
-  word: string;
-  setWord: Function;
 }
 
 const QuerySection: React.FC<Props> = ({
@@ -20,8 +17,6 @@ const QuerySection: React.FC<Props> = ({
   setUserWord,
   dictData,
   setDictData,
-  word,
-  setWord,
 }) => {
   //Handle the dictionary api call
   function handleApiCall() {
@@ -30,13 +25,14 @@ const QuerySection: React.FC<Props> = ({
         return res.json();
       })
       .then((data) => {
-        data = data[0];
+        // data = [data[0].word, data[0].phonetics, data[0].origin, data[0].meanings];
         console.log(data);
         if (!data) {
           console.log("Whoops, can't be empty");
+        } else if (data[0]) {
+          setDictData(data[0]);
         } else {
           setDictData(data);
-          setWord(dictData.word);
         }
       })
       .catch((error) => {
@@ -163,7 +159,6 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             </svg>
           </button>
         </div>
-        <h1>{word}</h1>
       </section>
     </>
   );

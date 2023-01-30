@@ -2,17 +2,29 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import QuerySection from "./QuerySection";
 import Content from "./Content";
+import { DictionaryData } from "./DictionaryInterfaces";
 
 export default function Home() {
-  const [font, setFont] = useState<string>("font-sans")
+  const [font, setFont] = useState<string>("font-sans");
   const [userWord, setUserWord] = useState<string>("hllo");
-  const [dictData, setDictData] = useState<any>("");
-  const [word, setWord] = useState<string>("");
+  const [dictData, setDictData] = useState<DictionaryData>({
+    word: "",
+    phonetic: "",
+    phonetics: [{}],
+    origin: "",
+    meanings: [{}]
+  });
+  // const [dictData, setDictData] = useState<Array<DictionaryData>>([{
+  //   word: "",
+  //   phonetics: Array<Phonetics>{text:"", audio:""},
+  //   origin: "",
+  //   meanings: [],
+  // }]);
 
   //Handle page font
   useEffect(() => {
     document.body.style.fontFamily = font;
-  }, [font])
+  }, [font]);
 
   return (
     <>
@@ -22,7 +34,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="public/favicon-32x32.png" /> */}
       </Head>
-      <main className="flex bg-red-600 w-11/12 h-fit mx-auto justify-center flex-col bg-gray-500">
+      <main className="flex w-11/12 h-fit mx-auto justify-center flex-col">
         <QuerySection
           font={font}
           setFont={setFont}
@@ -30,10 +42,8 @@ export default function Home() {
           setUserWord={setUserWord}
           dictData={dictData}
           setDictData={setDictData}
-          word={word}
-          setWord={setWord}
         />
-        <Content />
+        <Content dictData={dictData} />
       </main>
     </>
   );
