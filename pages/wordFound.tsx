@@ -9,6 +9,11 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
       return <h3>{dictData.meanings[i].partOfSpeech}</h3>;
     }
   };
+  const getPhonetics =
+    dictData.phonetics.filter((obj: { text: string }) => {
+      return obj.text !== "";
+    })[0].text;
+  
 
   return (
     <>
