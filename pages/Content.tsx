@@ -9,7 +9,7 @@ interface Props {
 
 const Content: React.FC<Props> = ({ dictData }) => {
   const renderContent = () => {
-    if (!dictData) {
+    if (dictData.title) {
       return <WordNotFound dictData={dictData} />;
     } else if (dictData) {
       return <WordFound dictData={dictData} />;
@@ -18,7 +18,7 @@ const Content: React.FC<Props> = ({ dictData }) => {
     }
   };
 
-  return <>{renderContent()}</>;
+  return <><section className="bg-white">{renderContent()}</section></>;
 };
 
 export default Content;

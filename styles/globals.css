@@ -6,6 +6,22 @@
   body {
     overflow-x: hidden;
   }
+
+  h1 {
+    font-size: 64px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  #Menu-items {
+    box-shadow: 0 10px 25px 1px #e5e7eb;
+  }
 }
 
 @layer utilities {

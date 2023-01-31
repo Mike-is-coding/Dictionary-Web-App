@@ -1,23 +1,37 @@
-import { Fragment } from 'react'
-import { Menu, Transition } from '@headlessui/react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import { Fragment } from "react";
+import { Menu, Transition } from "@headlessui/react";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
 
-function classNames(...classes:any) {
-  return classes.filter(Boolean).join(' ')
+function classNames(...classes: any) {
+  return classes.filter(Boolean).join(" ");
 }
 
 interface Props {
-    font: string;
-    setFont: Function;
+  font: string;
+  setFont: Function;
+}
+
+const DropdownMenu: React.FC<Props> = ({ font, setFont }) => {
+  const getFontName = () => {
+    switch (font) {
+      case "font-sans":
+        return "Sans-Serif";
+      case "font-serif":
+        return "Serif";
+      case "font-mono":
+        return "Mono";
+    }
   }
 
-const DropdownMenu: React.FC<Props> = ({font, setFont}) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className="inline-flex w-full justify-center rounded-md border-none bg-white px-4 py-2 text-md font-medium shadow-sm hover:bg-gray-50 focus:ring-transparent">
-          Options
-          <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
+        <Menu.Button className={`inline-flex ${font} font-bold w-full justify-center items-center rounded-lg border-none bg-white px-4 py-2 text-lg font-medium shadow-sm hover:bg-gray-50 focus:ring-transparent`}>
+          {getFontName()}
+          <ChevronDownIcon
+            className="-mr-1 ml-2 h-5 w-5 text-purple-600"
+            aria-hidden="true"
+          />
         </Menu.Button>
       </div>
 
@@ -30,67 +44,66 @@ const DropdownMenu: React.FC<Props> = ({font, setFont}) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-transparent ring-opacity-5 focus:outline-none">
+        <Menu.Items className="absolute right-5 z-10 mt-2 w-40 origin-top-right rounded-lg bg-white shadow-gray-100 ring-1 ring-transparent ring-opacity-5 focus:outline-none" id="Menu-items">
           <div className="py-1">
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
+                  type="submit"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "text-purple-600" : "text-black",
+                    "block font-sans font-bold text-lg w-full px-4 py-2 text-left text-sm"
                   )}
+                  onClick={() => {
+                    setFont("font-sans")
+                    console.log(font);
+                  }}
                 >
-                  Account settings
-                </a>
+                  Sans-Serif
+                </button>
               )}
             </Menu.Item>
+
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
+                  type="submit"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "text-purple-600" : "text-black",
+                    "block font-sans font-bold text-lg w-full px-4 py-2 text-left text-sm"
                   )}
+                  onClick={() => {
+                    setFont("font-serif")
+                    console.log(font);
+                  }}
                 >
-                  Support
-                </a>
+                  Serif
+                </button>
               )}
             </Menu.Item>
+
             <Menu.Item>
               {({ active }) => (
-                <a
-                  href="#"
+                <button
+                  type="submit"
                   className={classNames(
-                    active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                    'block px-4 py-2 text-sm'
+                    active ? "text-purple-600" : "text-black",
+                    "block font-sans font-bold text-lg w-full px-4 py-2 text-left text-sm"
                   )}
+                  onClick={() => {
+                    setFont("font-mono")
+                    console.log(font);
+                  }}
                 >
-                  License
-                </a>
+                  Mono
+                </button>
               )}
             </Menu.Item>
-            <form method="POST" action="#">
-              <Menu.Item>
-                {({ active }) => (
-                  <button
-                    type="submit"
-                    className={classNames(
-                      active ? 'bg-gray-100 text-gray-900' : 'text-gray-700',
-                      'block w-full px-4 py-2 text-left text-sm'
-                    )}
-                  >
-                    Sign out
-                  </button>
-                )}
-              </Menu.Item>
-            </form>
           </div>
         </Menu.Items>
       </Transition>
     </Menu>
-  )
-}
+  );
+};
 
 export default DropdownMenu;

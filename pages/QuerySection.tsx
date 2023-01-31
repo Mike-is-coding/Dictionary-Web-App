@@ -47,7 +47,7 @@ const QuerySection: React.FC<Props> = ({
 
   return (
     <>
-      <section className="bg-zinc-100">
+      <section className="">
         <div
           className="flex flex-row justify-between items-center my-5 dark:bg-gray-400"
           id="Page-Options"
@@ -121,16 +121,16 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                   id="Theme-toggle-switch"
                   className="sr-only"
                 />
-                <div className="toggle-bg bg-zinc-500 border-none h-6 w-11 rounded-full"></div>
+                <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
                 <span className="ml-3 text-gray-900 text-sm font-medium"></span>
               </label>
             </div>
           </div>
         </div>
         {/* Query Box */}
-        <div className="flex my-10 rounded-2xl bg-gray-200 p-3" id="Searchbox">
+        <div className="flex my-10 rounded-2xl bg-gray-100 p-3 focus:ring-purple-600" id="Searchbox">
           <input
-            className="w-full focus:ring-transparent text-2xl bg-gray-200 mr-2 border-none"
+            className="w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none"
             type="text"
             name="Word Textbox"
             id="word-entry"
