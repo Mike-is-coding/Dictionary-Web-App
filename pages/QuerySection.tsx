@@ -137,6 +137,12 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             onChange={(e) => {
               setUserWord(e.target.value);
             }}
+            onKeyDown={(e) => {
+              let key = e.key;
+              if (key === 'Enter') {
+                handleApiCall()
+              }
+            }}
           />
           <button
             className="flex justify-center items-center w-10"

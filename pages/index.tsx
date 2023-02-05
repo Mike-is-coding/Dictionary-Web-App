@@ -34,7 +34,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         {/* <link rel="icon" href="public/favicon-32x32.png" /> */}
       </Head>
-      <main className="flex w-11/12 h-fit mx-auto justify-center flex-col">
+      <main className="flex w-11/12 h-fit mx-auto justify-center flex-col" id="Content-container">
         <QuerySection
           font={font}
           setFont={setFont}

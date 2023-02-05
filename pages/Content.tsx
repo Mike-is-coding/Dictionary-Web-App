@@ -1,4 +1,3 @@
-import GetWordInfo from "./QuerySection";
 import React, { ReactComponentElement, useEffect, useState } from "react";
 import WordNotFound from "./wordNotFound";
 import WordFound from "./wordFound";
@@ -14,11 +13,19 @@ const Content: React.FC<Props> = ({ dictData }) => {
     } else if (dictData) {
       return <WordFound dictData={dictData} />;
     } else {
-        return (<><h1></h1></>)
+      return (
+        <>
+          <h1></h1>
+        </>
+      );
     }
   };
 
-  return <><section className="bg-white">{renderContent()}</section></>;
+  return (
+    <>
+      <section className="relative bg-gray-800">{renderContent()}</section>
+    </>
+  );
 };
 
 export default Content;
