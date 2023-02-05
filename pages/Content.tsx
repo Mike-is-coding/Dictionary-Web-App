@@ -23,7 +23,7 @@ const Content: React.FC<Props> = ({ dictData }) => {
 
   return (
     <>
-      <section className="relative bg-gray-800">{renderContent()}</section>
+      <section className="relative">{renderContent()}</section>
     </>
   );
 };

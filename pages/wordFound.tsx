@@ -7,12 +7,16 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
     let arr:JSX.Element[] = [];
     let i = 0;
     const meanings = dictData.meanings.forEach((obj:any) => {
+      let defs = [];
       arr = arr.concat(
-        [<h3 key={i}>{obj.partOfSpeech}</h3>,
-        <h4 key={i + 1}>Meaning</h4>,
-        <li key={i + 2}>{obj.definitions[0].definition}</li>]
+        [<h3 className="my-4" key={i}>{obj.partOfSpeech}</h3>,
+        <h4 className="my-4" key={i + 1}>Meaning</h4>,
+        <li className="ml-5 my-4" key={i + 2}>{obj.definitions[0].definition}</li>]
       )
-      i+=3;
+      for (let j = 0; j <= obj.definitions.length; j++) {
+        //append all definitions to arr 
+      }
+      i += arr.length;
     })
     // console.log(arr);
     return arr;
@@ -29,7 +33,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
     <section className="absolute w-full">
       <h1>{dictData.word}</h1>
       <div>{getPhonetics()}</div>
-      <div>{iterMeanings()}</div>
+      <div className="">{iterMeanings()}</div>
       <div></div>
     </section>
   );
