@@ -7,6 +7,7 @@ interface Props {
 const WordFound: React.FC<Props> = ({ dictData }) => {
   const iterMeanings = () => {
     let arr: JSX.Element[] = [];
+    console.log(dictData);
     const meanings = dictData.meanings.forEach((obj: any) => {
       arr = arr.concat([
         <h3 className="my-4" key={KeyGen(5)}>
@@ -29,7 +30,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
       }
     });
     // console.log(arr);
-    return arr;
+    return dictData.word ? arr: "";
   };
   const getPhonetics = () => {
     if (dictData.phonetics[1]) {
