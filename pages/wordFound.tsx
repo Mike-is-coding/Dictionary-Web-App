@@ -1,23 +1,33 @@
+import KeyGen from "./KeyGenerator";
+
 interface Props {
   dictData: any;
 }
 
 const WordFound: React.FC<Props> = ({ dictData }) => {
   const iterMeanings = () => {
-    let arr:JSX.Element[] = [];
-    let i = 0;
-    const meanings = dictData.meanings.forEach((obj:any) => {
-      let defs = [];
-      arr = arr.concat(
-        [<h3 className="my-4" key={i}>{obj.partOfSpeech}</h3>,
-        <h4 className="my-4" key={i + 1}>Meaning</h4>,
-        <li className="ml-5 my-4" key={i + 2}>{obj.definitions[0].definition}</li>]
-      )
-      for (let j = 0; j <= obj.definitions.length; j++) {
-        //append all definitions to arr 
+    let arr: JSX.Element[] = [];
+    const meanings = dictData.meanings.forEach((obj: any) => {
+      arr = arr.concat([
+        <h3 className="my-4" key={KeyGen(5)}>
+          {obj.partOfSpeech}
+        </h3>,
+        <h4 className="my-4" key={KeyGen(5)}>
+          {"Meaning"}
+        </h4>,
+      ]);
+      if (obj.definitions) {
+        for (let j = 0; j < obj.definitions.length; j++) {
+          //append all definitions to arr
+          console.log(obj.definitions[j].definition);
+          arr = arr.concat([
+            <li className="ml-5 my-4" key={KeyGen(5)}>
+              {obj.definitions[j].definition}
+            </li>,
+          ]);
+        }
       }
-      i += arr.length;
-    })
+    });
     // console.log(arr);
     return arr;
   };
