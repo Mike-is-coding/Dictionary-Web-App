@@ -21,7 +21,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
 
   const iterMeanings = () => {
     let arr: JSX.Element[] = [];
-    console.log(dictData);
+    // console.log(dictData);
     dictData.meanings.forEach((obj: any) => {
       arr = arr.concat([
         <h2 className="my-8 font-bold italic" key={KeyGen(5)}>

@@ -18,6 +18,8 @@ const QuerySection: React.FC<Props> = ({
   dictData,
   setDictData,
 }) => {
+  const [ringColor, setRingColor] = useState<string>("");
+  const [invalidSearch, setInvalidSearch] = useState<string>("");
   //Handle the dictionary api call
   function handleApiCall() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`)
@@ -25,7 +27,6 @@ const QuerySection: React.FC<Props> = ({
         return res.json();
       })
       .then((data) => {
-        // data = [data[0].word, data[0].phonetics, data[0].origin, data[0].meanings];
         console.log(data);
         if (!data) {
           console.log("Whoops, can't be empty");
@@ -36,7 +37,7 @@ const QuerySection: React.FC<Props> = ({
         }
       })
       .catch((error) => {
-        console.log(error);
+        // console.log(error);
       });
   }
 
@@ -125,14 +126,31 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                 <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
                 <span className="ml-3 text-gray-900 text-sm font-medium"></span>
               </label>
-              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path fill="none" stroke="#A445ED" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"/></svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="22"
+                height="22"
+                viewBox="0 0 22 22"
+              >
+                <path
+                  fill="none"
+                  stroke="#A445ED"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="1.5"
+                  d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"
+                />
+              </svg>
             </div>
           </div>
         </div>
         {/* Query Box */}
-        <div className="flex my-10 rounded-2xl bg-gray-100 p-3 focus:ring-purple-600" id="Searchbox">
+        <div
+          className={`flex my-10 rounded-2xl bg-gray-100 p-3 ${ringColor}`}
+          id="Searchbox"
+        >
           <input
-            className="w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none placeholder-gray-400"
+            className={`w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none placeholder-gray-400`}
             type="text"
             name="Word Textbox"
             id="word-entry"
@@ -142,14 +160,34 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             }}
             onKeyDown={(e) => {
               let key = e.key;
-              if (key === 'Enter') {
-                handleApiCall()
+              if (!userWord && key === "Enter") {
+                setRingColor("ring-red-600 ring-1");
+                setInvalidSearch("Whoops, cant be empty...");
+                if (document.activeElement !== null && document.activeElement instanceof HTMLElement) document.activeElement.blur();
               }
+               else if (key === "Enter") {
+                handleApiCall();
+              }
+            }}
+            onFocus={() => {
+              setRingColor("ring-purple-600 ring-1");
+              setInvalidSearch("");
+            }}
+            onBlur={() => {
+              setRingColor("ring-transparent ring-1");
+              setInvalidSearch("");
             }}
           />
           <button
             className="flex justify-center items-center w-10"
-            onClick={handleApiCall}
+            onClick={() => {
+              if (!userWord) {
+                setRingColor("ring-red-600 ring-1");
+                setInvalidSearch("Whoops, cant be empty...");
+              } else {
+                handleApiCall;
+              }
+            }}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -168,6 +206,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             </svg>
           </button>
         </div>
+        <h3 className="text-red-600 -my-8">{invalidSearch}</h3>
       </section>
     </>
   );
