@@ -34,6 +34,11 @@
   #Menu-items {
     box-shadow: 0 10px 25px 1px #e5e7eb;
   }
+
+  #play-audio:hover circle {
+    opacity: 1;
+    fill: #A445ED;
+  }
 }
 
 @layer utilities {

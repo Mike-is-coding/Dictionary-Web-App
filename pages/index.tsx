@@ -6,7 +6,7 @@ import { DictionaryData } from "./DictionaryInterfaces";
 
 export default function Home() {
   const [font, setFont] = useState<string>("font-sans");
-  const [userWord, setUserWord] = useState<string>("hllo");
+  const [userWord, setUserWord] = useState<string>("");
   const [dictData, setDictData] = useState<DictionaryData>({
     word: "",
     phonetic: "",
@@ -43,7 +43,10 @@ export default function Home() {
           dictData={dictData}
           setDictData={setDictData}
         />
-        <Content dictData={dictData} />
+        <Content 
+        dictData={dictData}
+        userWord={userWord}
+        />
       </main>
     </>
   );

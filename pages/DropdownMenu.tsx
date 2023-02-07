@@ -26,7 +26,7 @@ const DropdownMenu: React.FC<Props> = ({ font, setFont }) => {
   return (
     <Menu as="div" className="relative inline-block text-left">
       <div>
-        <Menu.Button className={`inline-flex ${font} font-bold w-full justify-center items-center rounded-lg border-none bg-white px-4 py-2 text-lg font-medium shadow-sm hover:bg-gray-50 focus:ring-transparent`}>
+        <Menu.Button className={`inline-flex ${font} font-bold w-full justify-center items-center rounded-lg border-none bg-white px-4 py-2 text-lg font-medium focus:ring-transparent`}>
           {getFontName()}
           <ChevronDownIcon
             className="-mr-1 ml-2 h-5 w-5 text-purple-600"

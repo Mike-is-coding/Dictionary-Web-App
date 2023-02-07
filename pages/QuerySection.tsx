@@ -61,6 +61,7 @@ const QuerySection: React.FC<Props> = ({
             preserveAspectRatio="xMidYMid meet"
           >
             <g
+              className="fill-gray-500"
               transform="translate(0.000000,512.000000) scale(0.100000,-0.100000)"
               fill="#000000"
               stroke="none"
@@ -124,16 +125,18 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                 <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
                 <span className="ml-3 text-gray-900 text-sm font-medium"></span>
               </label>
+              <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22"><path fill="none" stroke="#A445ED" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M1 10.449a10.544 10.544 0 0 0 19.993 4.686C11.544 15.135 6.858 10.448 6.858 1A10.545 10.545 0 0 0 1 10.449Z"/></svg>
             </div>
           </div>
         </div>
         {/* Query Box */}
         <div className="flex my-10 rounded-2xl bg-gray-100 p-3 focus:ring-purple-600" id="Searchbox">
           <input
-            className="w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none"
+            className="w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none placeholder-gray-400"
             type="text"
             name="Word Textbox"
             id="word-entry"
+            placeholder="Search for any word..."
             onChange={(e) => {
               setUserWord(e.target.value);
             }}

@@ -4,6 +4,7 @@ import WordFound from "./wordFound";
 
 interface Props {
   dictData: object | any;
+  userWord: string;
 }
 
 const Content: React.FC<Props> = ({ dictData }) => {
