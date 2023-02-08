@@ -1,31 +1,29 @@
+import { useEffect, useState } from "react";
 import KeyGen from "./KeyGenerator";
 
 interface Props {
   dictData: any;
+  phonetics: any;
 }
 
-const WordFound: React.FC<Props> = ({ dictData }) => {
-  const getAudio = () => {
-    let audio:any = ""
-    for (let i = 0; i < dictData.phonetics; i++) {
-      if (Object.hasOwn(dictData.phonetics[i], "audio")) {
-        audio = new Audio(dictData.phonetics[i].audio)
-        break
-      }
-    }
-    console.log(audio);
-    return audio;
-  }
+const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
+  // console.log(phonetics)
 
-  let audio:HTMLAudioElement = getAudio();
-
+  //Phonetic Object not getting phonetics properly
+  const [phoneticObject, setPhoneticObject] = useState<any>(phonetics.filter((obj:any) => {
+    if (obj.hasOwnProperty("audio") && obj.audio !== "") return obj;
+  }))
+  // console.log(phoneticObject);
+  const [audio, setAudio] = useState<any>();
+  
+  {/* Get and render meanings */}
   const iterMeanings = () => {
     let arr: JSX.Element[] = [];
     // console.log(dictData);
     dictData.meanings.forEach((obj: any) => {
       arr = arr.concat([
-        <h2 className="my-8 font-bold italic" key={KeyGen(5)}>
-          {obj.partOfSpeech}
+        <h2 className="my-8 font-bold italic flex items-center" key={KeyGen(5)}>
+          {obj.partOfSpeech}<div className="w-full h-px bg-gray-200 ml-6"></div>
         </h2>,
         <h4 className="my-4 text-gray-500" key={KeyGen(5)}>
           {"Meaning"}
@@ -68,7 +66,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
             height="75"
             viewBox="0 0 75 75"
           >
-            <g className="hover:fill-white" fill="#A445ED" fill-rule="evenodd">
+            <g className="hover:fill-white" fill="#A445ED" fillRule="evenodd">
               <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
               <path d="M29 27v21l21-10.5z" />
             </g>

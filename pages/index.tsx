@@ -14,17 +14,15 @@ export default function Home() {
     origin: "",
     meanings: [{}]
   });
-  // const [dictData, setDictData] = useState<Array<DictionaryData>>([{
-  //   word: "",
-  //   phonetics: Array<Phonetics>{text:"", audio:""},
-  //   origin: "",
-  //   meanings: [],
-  // }]);
+  const [phonetics, setPhonetics] = useState<Object[]>(dictData.phonetics);
+  // console.log(phonetics)
+ 
 
   //Handle page font
   useEffect(() => {
     document.body.style.fontFamily = font;
-  }, [font]);
+    setPhonetics(dictData.phonetics)
+  }, [font, dictData]);
 
   return (
     <>
@@ -46,6 +44,8 @@ export default function Home() {
         <Content 
         dictData={dictData}
         userWord={userWord}
+        phonetics={phonetics}
+        setPhonetics={setPhonetics}
         />
       </main>
     </>
