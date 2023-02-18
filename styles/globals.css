@@ -39,6 +39,10 @@
     opacity: 1;
     fill: #A445ED;
   }
+
+  .toggle-bg {
+    background: green;
+  }
 }
 
 @layer utilities {

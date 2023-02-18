@@ -7,20 +7,8 @@ interface Props {
 }
 
 const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
-  // console.log(phonetics)
-
-  //Phonetic Object not getting phonetics properly
-  // const [phoneticObject, setPhoneticObject] = useState<any>(phonetics.filter((obj:any) => {
-  //   if (obj.hasOwnProperty("audio") && obj.audio !== "") return obj;
-  // }))
-  // console.log(phoneticObject);
+  // console.log(dictData.phonetics)
   const [audio, setAudio] = useState<any>();
-  console.log(phonetics.audio);
-  useEffect(() => {
-    if (phonetics.audio) {
-      setAudio(phonetics.audio);
-    }
-  }, [phonetics]);
 
   {
     /* Get and render meanings */
@@ -53,7 +41,7 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
       }
       if (obj.synonyms && obj.synonyms.length > 0) {
         arr = arr.concat([
-          <h4 className="my-4 text-gray-500" key={KeyGen(5)}>
+          <h4 className="my-8 text-gray-500" key={KeyGen(5)}>
             {"Synonyms"}
             <span className="ml-4 font-bold text-purple-600">
               {obj.synonyms}
@@ -65,6 +53,7 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
     // console.log(arr);
     return dictData.word ? arr : "";
   };
+
   const getPhonetics = () => {
     if (dictData.phonetics[1]) {
       return <h2>{dictData.phonetics[1].text}</h2>;
@@ -73,20 +62,35 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
     }
   };
 
+  const getAudio = () => {
+    let arr: any = [];
+    for (let i = 0; i < dictData.phonetics.length; i++) {
+      arr = arr.concat(dictData.phonetics[i].audio);
+    }
+    let longest = arr.reduce(
+      (a: string, b: string) => (a.length > b.length ? a : b),
+      ""
+    );
+    let newAudio = new Audio(longest);
+    setAudio(newAudio);
+  };
+
   return (
     <section className="absolute w-full">
-      <h1 className="font-bold text-5xl my-4">{dictData.word}</h1>
+      <h1 className="font-bold text-5xl my-4 lg:text-6xl">{dictData.word}</h1>
       <div className="absolute right-0 top-8">
         <button
           onClick={() => {
+            getAudio();
+            // console.log(audio);
             if (audio) audio.play();
           }}
         >
           <svg
             id="play-audio"
             xmlns="http://www.w3.org/2000/svg"
-            width="50"
-            height="50"
+            width="75"
+            height="75"
             viewBox="0 0 75 75"
           >
             <g className="hover:fill-white" fill="#A445ED" fillRule="evenodd">

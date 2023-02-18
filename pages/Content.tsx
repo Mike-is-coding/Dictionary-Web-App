@@ -23,7 +23,7 @@ const Content: React.FC<Props> = ({ dictData, userWord, phonetics }) => {
       );
     }
   };
-  console.log(phonetics);
+  // console.log(phonetics);
 
   return (
     <>

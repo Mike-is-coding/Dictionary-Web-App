@@ -42,9 +42,9 @@ const QuerySection: React.FC<Props> = ({
   }
 
   //Test input box
-  useEffect(() => {
-    console.log(userWord);
-  }, [userWord]);
+  // useEffect(() => {
+  //   console.log(userWord);
+  // }, [userWord]);
 
   return (
     <>
@@ -121,7 +121,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                 <input
                   type="checkbox"
                   id="Theme-toggle-switch"
-                  className="sr-only"
+                  className="sr-only bg-purple-600"
                 />
                 <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
                 <span className="ml-3 text-gray-900 text-sm font-medium"></span>
@@ -185,7 +185,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                 setRingColor("ring-red-600 ring-1");
                 setInvalidSearch("Whoops, cant be empty...");
               } else {
-                handleApiCall;
+                handleApiCall();
               }
             }}
           >
