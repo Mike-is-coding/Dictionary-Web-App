@@ -1,7 +1,7 @@
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import QuerySection from "./QuerySection";
-import Content from "./Content";
+import Content from "../components/Content";
 import { DictionaryData } from "../components/DictionaryInterfaces";
 
 export default function Home() {

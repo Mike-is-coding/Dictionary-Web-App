@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Dropdown from "./DropdownMenu";
+import Dropdown from "../components/DropdownMenu";
 
 interface Props {
   font: string;
@@ -48,7 +48,7 @@ const QuerySection: React.FC<Props> = ({
 
   return (
     <>
-      <section className="px-10">
+      <section className="">
         <div
           className="flex flex-row justify-between items-center my-5"
           id="Page-Options"
