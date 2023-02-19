@@ -20,6 +20,7 @@ const QuerySection: React.FC<Props> = ({
 }) => {
   const [ringColor, setRingColor] = useState<string>("");
   const [invalidSearch, setInvalidSearch] = useState<string>("");
+  
   //Handle the dictionary api call
   function handleApiCall() {
     fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${userWord}`)
@@ -40,11 +41,6 @@ const QuerySection: React.FC<Props> = ({
         // console.log(error);
       });
   }
-
-  //Test input box
-  // useEffect(() => {
-  //   console.log(userWord);
-  // }, [userWord]);
 
   return (
     <>
@@ -206,7 +202,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             </svg>
           </button>
         </div>
-        <h3 className="text-red-600 -my-8">{invalidSearch}</h3>
+        <h3 className="text-red-600 -my-8 mb-0">{invalidSearch}</h3>
       </section>
     </>
   );

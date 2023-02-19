@@ -37,14 +37,24 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
               {obj.definitions[j].definition}
             </li>,
           ]);
+          if (obj.definitions[j].example){
+            arr = arr.concat([
+              <h4 className="my-4 ml-6 text-gray-500" key={KeyGen(5)}>{'"' + obj.definitions[j].example + '"'}</h4>
+            ])
+          }
         }
       }
       if (obj.synonyms && obj.synonyms.length > 0) {
+        let syns:any = []
+        for (let i = 0; i < obj.synonyms.length; i++) {
+          syns = syns.concat(obj.synonyms[i])
+          syns = syns.concat(" ")
+        }
         arr = arr.concat([
           <h4 className="my-8 text-gray-500" key={KeyGen(5)}>
             {"Synonyms"}
             <span className="ml-4 font-bold text-purple-600">
-              {obj.synonyms}
+              {syns}
             </span>
           </h4>,
         ]);
