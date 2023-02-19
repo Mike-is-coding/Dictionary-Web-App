@@ -3,10 +3,9 @@ import KeyGen from "./KeyGenerator";
 
 interface Props {
   dictData: any;
-  phonetics: any;
 }
 
-const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
+const WordFound: React.FC<Props> = ({ dictData }) => {
   // console.log(dictData.phonetics)
   const [audio, setAudio] = useState<any>();
 
@@ -33,27 +32,32 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
         for (let j = 0; j < obj.definitions.length; j++) {
           // console.log(obj.definitions[j].definition);
           arr = arr.concat([
-            <li className="ml-5 my-2 text-gray-800" key={KeyGen(5)}>
+            <li
+              className="ml-5 my-2 text-gray-800 dark:text-white"
+              key={KeyGen(5)}
+            >
               {obj.definitions[j].definition}
             </li>,
           ]);
-          if (obj.definitions[j].example){
+          if (obj.definitions[j].example) {
             arr = arr.concat([
-              <h4 className="my-4 ml-6 text-gray-500" key={KeyGen(5)}>{'"' + obj.definitions[j].example + '"'}</h4>
-            ])
+              <h4 className="my-4 ml-6 text-gray-500" key={KeyGen(5)}>
+                {'"' + obj.definitions[j].example + '"'}
+              </h4>,
+            ]);
           }
         }
       }
       if (obj.synonyms && obj.synonyms.length > 0) {
-        let syns:any = []
+        let syns: any = [];
         for (let i = 0; i < obj.synonyms.length; i++) {
-          syns = syns.concat(obj.synonyms[i])
-          syns = syns.concat(" ")
+          syns = syns.concat(obj.synonyms[i]);
+          syns = syns.concat(" ");
         }
         arr = arr.concat([
           <h4 className="my-8 text-gray-500" key={KeyGen(5)}>
             {"Synonyms"}
-            <span className="ml-4 font-bold text-purple-600">
+            <span className="ml-4 font-bold" style={{ color: "#A445ED" }}>
               {syns}
             </span>
           </h4>,
@@ -86,10 +90,11 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
   };
 
   return (
-    <section className="absolute w-full">
+    <section className="absolute w-full dark:text-white">
       <h1 className="font-bold text-5xl my-4 lg:text-6xl">{dictData.word}</h1>
       <div className="absolute right-0 top-8">
         <button
+          id="play-audio"
           onClick={() => {
             getAudio();
             // console.log(audio);
@@ -97,13 +102,12 @@ const WordFound: React.FC<Props> = ({ dictData, phonetics }) => {
           }}
         >
           <svg
-            id="play-audio"
             xmlns="http://www.w3.org/2000/svg"
             width="75"
             height="75"
             viewBox="0 0 75 75"
           >
-            <g className="hover:fill-white" fill="#A445ED" fillRule="evenodd">
+            <g fill="#A445ED" fillRule="evenodd">
               <circle cx="37.5" cy="37.5" r="37.5" opacity=".25" />
               <path d="M29 27v21l21-10.5z" />
             </g>

@@ -5,16 +5,14 @@ import WordFound from "./wordFound";
 interface Props {
   dictData: object | any;
   userWord: string;
-  phonetics: Object[] | any;
-  setPhonetics: Function;
 }
 
-const Content: React.FC<Props> = ({ dictData, userWord, phonetics }) => {
+const Content: React.FC<Props> = ({ dictData, userWord }) => {
   const renderContent = () => {
     if (dictData.title) {
       return <WordNotFound dictData={dictData} />;
     } else if (dictData.word !== "") {
-      return <WordFound dictData={dictData} phonetics={phonetics} />;
+      return <WordFound dictData={dictData} />;
     } else if (!userWord) {
       return (
         <>

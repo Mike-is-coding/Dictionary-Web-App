@@ -8,6 +8,8 @@ interface Props {
   setUserWord: Function;
   dictData: any;
   setDictData: Function;
+  theme: string;
+  setTheme: Function;
 }
 
 const QuerySection: React.FC<Props> = ({
@@ -17,6 +19,8 @@ const QuerySection: React.FC<Props> = ({
   setUserWord,
   dictData,
   setDictData,
+  theme,
+  setTheme
 }) => {
   const [ringColor, setRingColor] = useState<string>("");
   const [invalidSearch, setInvalidSearch] = useState<string>("");
@@ -28,9 +32,9 @@ const QuerySection: React.FC<Props> = ({
         return res.json();
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
         if (!data) {
-          console.log("Whoops, can't be empty");
+          // console.log("Whoops, can't be empty");
         } else if (data[0]) {
           setDictData(data[0]);
         } else {
@@ -44,9 +48,9 @@ const QuerySection: React.FC<Props> = ({
 
   return (
     <>
-      <section className="">
+      <section className="px-10">
         <div
-          className="flex flex-row justify-between items-center my-5 dark:bg-gray-400"
+          className="flex flex-row justify-between items-center my-5"
           id="Page-Options"
         >
           <svg
@@ -117,7 +121,11 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                 <input
                   type="checkbox"
                   id="Theme-toggle-switch"
-                  className="sr-only bg-purple-600"
+                  className="sr-only"
+                  onClick={(e)=>{
+                    if (theme === "dark") setTheme("");
+                    else setTheme("dark");
+                  }}
                 />
                 <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
                 <span className="ml-3 text-gray-900 text-sm font-medium"></span>
@@ -142,11 +150,11 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
         </div>
         {/* Query Box */}
         <div
-          className={`flex my-10 rounded-2xl bg-gray-100 p-3 ${ringColor}`}
+          className={`flex my-10 rounded-2xl bg-gray-100 dark:bg-gray-700 p-3 ${ringColor}`}
           id="Searchbox"
         >
           <input
-            className={`w-full font-bold focus:ring-transparent text-2xl bg-inherit mr-2 border-none placeholder-gray-400`}
+            className={`w-full font-bold focus:ring-transparent text-2xl bg-inherit dark:text-white dark:bg-gray-700 mr-2 border-none placeholder-gray-400`}
             type="text"
             name="Word Textbox"
             id="word-entry"

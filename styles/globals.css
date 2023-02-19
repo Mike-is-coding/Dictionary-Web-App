@@ -40,6 +40,10 @@
     fill: #A445ED;
   }
 
+  #play-audio:hover g {
+    fill: white;
+  }
+
   .toggle-bg {
     background: green;
   }
