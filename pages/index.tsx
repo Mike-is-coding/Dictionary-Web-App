@@ -2,7 +2,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import QuerySection from "./QuerySection";
 import Content from "./Content";
-import { DictionaryData } from "./DictionaryInterfaces";
+import { DictionaryData } from "../components/DictionaryInterfaces";
 
 export default function Home() {
   const [theme, setTheme] = useState<string>("");
