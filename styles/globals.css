@@ -35,6 +35,10 @@
     box-shadow: 0 10px 25px 1px #e5e7eb;
   }
 
+  #Menu-items2 {
+    box-shadow: 0 10px 25px 1px #A445ED;
+  }
+
   #play-audio:hover circle {
     opacity: 1;
     fill: #A445ED;

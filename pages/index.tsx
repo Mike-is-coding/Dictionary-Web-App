@@ -18,9 +18,9 @@ export default function Home() {
 
   useEffect(() => {
     if (theme === "dark") {
-      document.body.classList.add('bg-black');
+      document.body.classList.add('bg-neutral-900');
     } else {
-      document.body.classList.remove('bg-black');
+      document.body.classList.remove('bg-neutral-900');
       document.body.classList.add('bg-white')
     }
   })

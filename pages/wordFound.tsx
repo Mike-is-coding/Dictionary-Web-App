@@ -6,7 +6,6 @@ interface Props {
 }
 
 const WordFound: React.FC<Props> = ({ dictData }) => {
-  // console.log(dictData.phonetics)
   const [audio, setAudio] = useState<any>();
 
   {
@@ -26,9 +25,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
         </h4>,
       ]);
       if (obj.definitions) {
-        {
-          /* append all definitions to arr */
-        }
+        
         for (let j = 0; j < obj.definitions.length; j++) {
           // console.log(obj.definitions[j].definition);
           arr = arr.concat([
@@ -52,12 +49,14 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
         let syns: any = [];
         for (let i = 0; i < obj.synonyms.length; i++) {
           syns = syns.concat(obj.synonyms[i]);
-          syns = syns.concat(" ");
+          if (obj.synonyms.length > 1) {
+            syns = syns.concat(" ");
+          }
         }
         arr = arr.concat([
           <h4 className="my-8 text-gray-500" key={KeyGen(5)}>
             {"Synonyms"}
-            <span className="ml-4 font-bold" style={{ color: "#A445ED" }}>
+            <span className="ml-4 font-bold hover:underline hover:cursor-pointer" style={{ color: "#A445ED" }}>
               {syns}
             </span>
           </h4>,
@@ -120,7 +119,7 @@ const WordFound: React.FC<Props> = ({ dictData }) => {
       <div className="mb-20">
         <h4 className="text-gray-500 underline block">{"Source"}</h4>
         <h4 className="flex items-center underline">
-          <a href={dictData.sourceUrls[0]}>{dictData.sourceUrls[0]}</a>
+          <a href={dictData.sourceUrls[0]} target="_blank" rel="noreferrer">{dictData.sourceUrls[0]}</a>
           <svg
             className="ml-2"
             xmlns="http://www.w3.org/2000/svg"

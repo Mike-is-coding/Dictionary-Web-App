@@ -111,7 +111,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
           </svg>
           <div className="flex divide-x-2">
             {/* Font select dropdown */}
-            <Dropdown font={font} setFont={setFont} />
+            <Dropdown font={font} setFont={setFont} theme={theme} />
             {/* Toggle Switch */}
             <div className="flex items-center">
               <label
@@ -127,8 +127,8 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
                     else setTheme("dark");
                   }}
                 />
-                <div className="toggle-bg bg-gray-500 border-none h-6 w-11 rounded-full"></div>
-                <span className="ml-3 text-gray-900 text-sm font-medium"></span>
+                <div className="toggle-bg bg-gray-500 checked:bg-purple-600 dark:bg-purple-600 border-none h-6 w-11 rounded-full"></div>
+                <span className="ml-3 text-sm font-medium"></span>
               </label>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
