@@ -117,12 +117,13 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
               <label
                 htmlFor="Theme-toggle-switch"
                 className="flex items-center cursor-pointer relative ml-4"
+                tabIndex={0}
               >
                 <input
                   type="checkbox"
                   id="Theme-toggle-switch"
                   className="sr-only"
-                  onClick={(e)=>{
+                  onClick={()=>{
                     if (theme === "dark") setTheme("");
                     else setTheme("dark");
                   }}
@@ -159,6 +160,7 @@ c-20 17 -40 21 -92 21 -87 0 -281 -17 -404 -35 -447 -66 -921 -260 -1259 -516
             name="Word Textbox"
             id="word-entry"
             placeholder="Search for any word..."
+            tabIndex={0}
             onChange={(e) => {
               setUserWord(e.target.value);
             }}
